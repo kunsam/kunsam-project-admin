@@ -1,0 +1,51 @@
+# version: 2
+# jobs:
+#   build-job:
+#     working_directory: ~/letote_stylist_admin
+#     docker:
+#       - image: circleci/node:10
+#     environment:
+#       - CI: false
+#     steps:
+#       - checkout
+#       - run:
+#           name: install-npm-wee
+#           command: npm install
+#       - run:
+#           name: test
+#           command: npm test
+#   deploy-job:
+#     environment:
+#       - CI: false
+#     docker:
+#       - image: circleci/node:10
+#     working_directory: ~/letote_stylist_admin
+#     steps:
+#       - checkout
+#       - add-ssh-keys:
+#           fingerprints:
+#             - 'e7:29:fc:69:9a:a4:e6:4f:b1:e4:6e:65:66:87:ce:33'
+#       - run:
+#           name: install-rsync
+#           command: sudo apt install rsync
+#       - run:
+#           name: install-npm
+#           command: npm install
+#       - run:
+#           name: build project
+#           command: npm run build
+#       - run:
+#           name: upload
+#           command: rsync -e "ssh -o StrictHostKeyChecking=no -p 11690" -azP --delete ./dist/ ubuntu@52.83.224.191:/var/www/stylist/build/
+      
+# workflows:
+#   version: 2
+#   build-deploy:
+#     jobs:
+#       - build-job
+#       - deploy-job:
+#           requires:
+#             - build-job
+#           filters:
+#             branches:
+#               only: master

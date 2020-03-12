@@ -1,0 +1,22 @@
+{
+  "name": "Letote",
+  "short_name": "Letote",
+  "display": "standalone",
+  "start_url": "./?utm_source=homescreen",
+  "theme_color": "#002140",
+  "background_color": "#001529",
+  "icons": [
+    {
+      "src": "logo@2x.png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo@2x.png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "logo@3x.png",
+      "sizes": "512x512"
+    }
+  ]
+}
