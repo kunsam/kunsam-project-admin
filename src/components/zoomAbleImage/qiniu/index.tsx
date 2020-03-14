@@ -12,7 +12,7 @@ export interface ZoomAbleQiNiuImageProps {
   backgroundColor?: string;
   style?: React.CSSProperties;
   placeholderStyle?: React.CSSProperties;
-
+  disableZoomedRatio?: boolean;
   onClick?: () => void;
 }
 
@@ -70,6 +70,7 @@ export class ZoomAbleQiNiuImage extends Component<
       originSrc,
       backgroundColor,
       placeholderStyle = {},
+      disableZoomedRatio,
     } = this.props;
     if (!originSrc) {
       return (
@@ -112,7 +113,10 @@ export class ZoomAbleQiNiuImage extends Component<
             <img
               alt=""
               src={qnUrl}
-              style={{ width: zoomSize.width, height: zoomSize.height }}
+              style={{
+                width: zoomSize.width,
+                height: disableZoomedRatio ? undefined : zoomSize.height,
+              }}
               onLoad={() => {
                 this.setState({ loading: false });
               }}

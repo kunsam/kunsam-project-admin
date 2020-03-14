@@ -12,6 +12,11 @@ declare module '*.bmp';
 declare module '*.tiff';
 declare module 'omit.js';
 
+declare module "*.md" {
+  const value: string;
+  export default value;
+}
+
 // google analytics interface
 interface GAFieldsObject {
   eventCategory: string;

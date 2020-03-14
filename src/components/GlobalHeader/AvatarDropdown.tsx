@@ -4,7 +4,7 @@ import styles from './index.less';
 import { ClickParam } from 'antd/es/menu';
 import { CurrentUser } from '@/models/user';
 import HeaderDropdown from '../HeaderDropdown';
-import { Avatar, Menu, Spin, message } from 'antd';
+import { Avatar, Menu, message } from 'antd';
 import { ConnectProps, ConnectState } from '@/models/connect';
 import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
 
@@ -59,22 +59,14 @@ class AvatarDropdown extends React.Component<GlobalHeaderRightProps> {
         )}
       </Menu>
     );
-    return currentUser && currentUser.id ? (
+    return currentUser ? (
       <HeaderDropdown overlay={menuHeaderDropdown}>
         <span className={`${styles.action} ${styles.account}`}>
           <Avatar size="small" className={styles.avatar} src="" alt="avatar" />
-          <span className={styles.name}>{currentUser.email}</span>
+          {/* <span className={styles.name}>{currentUser.email}</span> */}
         </span>
       </HeaderDropdown>
-    ) : (
-      <Spin
-        size="small"
-        style={{
-          marginLeft: 8,
-          marginRight: 8,
-        }}
-      />
-    );
+    ) : null;
   }
 }
 

@@ -1,14 +1,11 @@
 import { AnyAction } from 'redux';
-import { MenuDataItem } from '@ant-design/pro-layout';
 import { RouterTypes } from 'umi';
-import { GlobalModelState } from './global';
-import { DefaultSettings as SettingModelState } from '../../config/defaultSettings';
-import { LoginModelState } from './login';
 import { UserModelState } from './user';
-import { StylistModelState } from './stylist';
-import { StylistTaskModelState } from './stylist_task';
-import { StylingProductsModelState } from './styling_products';
+import { LoginModelState } from './login';
+import { GlobalModelState } from './global';
 import { ExampleModelState } from './_example';
+import { MenuDataItem } from '@ant-design/pro-layout';
+import { DefaultSettings as SettingModelState } from '../../config/defaultSettings';
 
 export { GlobalModelState, SettingModelState, UserModelState };
 
@@ -16,27 +13,22 @@ export interface Loading {
   global: boolean;
   effects: { [key: string]: boolean | undefined };
   models: {
-    global?: boolean;
     menu?: boolean;
-    setting?: boolean;
     user?: boolean;
     login?: boolean;
-    stylist?: boolean;
-    stylistTask?: boolean;
+    global?: boolean;
+    setting?: boolean;
   };
 }
 
 // 6. 添加新增Mode类型到 connectState中
 export interface ConnectState {
-  example: ExampleModelState;
   loading: Loading;
-  login: LoginModelState;
   user: UserModelState;
+  login: LoginModelState;
   global: GlobalModelState;
-  stylist: StylistModelState;
+  example: ExampleModelState;
   settings: SettingModelState;
-  stylistTask: StylistTaskModelState;
-  stylingProducts: StylingProductsModelState;
 }
 
 export interface Route extends MenuDataItem {

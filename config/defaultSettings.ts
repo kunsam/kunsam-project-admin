@@ -53,9 +53,9 @@ export default {
   fixSiderbar: false,
   colorWeak: false,
   menu: {
-    locale: true,
+    locale: false,
   },
-  title: 'Letote',
+  title: 'Sam Project',
   pwa: false,
   iconfontUrl: '',
 } as DefaultSettings;

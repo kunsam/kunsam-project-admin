@@ -9,7 +9,7 @@ const APP_ROUTER_CONFIG_MAP = {
     },
   },
   home: {
-    path: '/admin',
+    path: '/home',
   }
 };
 

@@ -58,16 +58,73 @@ export const ROUTER_CONFIG: RouteConfigItem[] = [
         // authority: ['admin', 'user'],
         routes: [
           {
-            path: '/',
-            redirect: '/admin',
-          },
-          {
             name: '首页',
             icon: 'home',
             component: './home/home.tsx',
             path: APP_ROUTER_CONFIG_MAP.home.path,
+            routes: [],
           },
 
+          {
+            name: '项目管理',
+            icon: 'CodeOutlined',
+            path: '/project',
+            routes: [
+              {
+                name: '项目管理',
+                path: '/project',
+                component: './project/index',
+              },
+              {
+                name: '标签项目',
+                path: '/project/project_by_tag',
+                component: './project/project_by_tag',
+                hideInMenu: true,
+              },
+            ],
+          },
+
+          {
+            name: '故事管理',
+            icon: 'WalletOutlined',
+            path: '/story',
+            routes: [
+              {
+                name: '看板',
+                path: '/story/index',
+                component: './story/index',
+              },
+              {
+                name: '故事管理',
+                path: '/story/list',
+                component: './story/list/index',
+              },
+            ],
+          },
+
+          {
+            name: '前端资源',
+            icon: 'ShopOutlined',
+            path: '/resource',
+            routes: [
+              {
+                name: 'react社区资源',
+                path: '/resource/react',
+                component: './resource/react/index',
+              },
+              {
+                name: 'github资源',
+                path: '/resource/github',
+                component: './resource/github/index',
+              },
+            ],
+          },
+          {
+            name: '个人简介',
+            icon: 'UserOutlined',
+            path: '/about',
+            component: './about/index',
+          },
           // 无法找到的路径
           {
             path: undefined,

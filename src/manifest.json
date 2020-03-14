@@ -1,21 +1,21 @@
 {
-  "name": "Letote",
-  "short_name": "Letote",
+  "name": "Sam",
+  "short_name": "Sam",
   "display": "standalone",
   "start_url": "./?utm_source=homescreen",
   "theme_color": "#002140",
   "background_color": "#001529",
   "icons": [
     {
-      "src": "logo@2x.png",
+      "src": "http://q7345qrap.bkt.clouddn.com/avatar.jpg",
       "sizes": "192x192"
     },
     {
-      "src": "logo@2x.png",
+      "src": "http://q7345qrap.bkt.clouddn.com/avatar.jpg",
       "sizes": "128x128"
     },
     {
-      "src": "logo@3x.png",
+      "src": "http://q7345qrap.bkt.clouddn.com/avatar.jpg",
       "sizes": "512x512"
     }
   ]

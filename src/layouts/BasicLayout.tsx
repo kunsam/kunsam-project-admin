@@ -3,7 +3,7 @@
  * You can view component api by:
  * https://github.com/ant-design/ant-design-pro-layout
  */
-import React, { useEffect } from 'react';
+import React from 'react';
 import ProLayout, {
   MenuDataItem,
   BasicLayoutProps as ProLayoutProps,
@@ -13,14 +13,13 @@ import { findIndex } from 'lodash';
 import { Link } from 'umi';
 import { connect } from 'dva';
 import { Dispatch } from 'redux';
-import logo from '../assets/logo.svg';
 import { APPClient } from '../services/client';
 import { ConnectState } from '@/models/connect';
 import AuthorizedLayout from './AuthorizedLayout';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { GlobalFooter } from '@/components/GlobalFooter';
 import RightContent from '@/components/GlobalHeader/RightContent';
-import { APP_ROUTER_CONFIG_MAP } from '../utils/router/router_map.js';
+import { Avatar } from 'antd';
 
 export interface BasicLayoutProps extends ProLayoutProps {
   breadcrumbNameMap: {
@@ -40,16 +39,12 @@ export type BasicLayoutContext = { [K in 'location']: BasicLayoutProps[K] } & {
 
 const BREADCRUMB_SETTING: { [key: string]: { path: string; breadcrumbName: string }[] } = {
   // 搭配单页配置
-  [APP_ROUTER_CONFIG_MAP.stylist_sheet.index.path]: [
-    {
-      path: APP_ROUTER_CONFIG_MAP.stylist_task.index.path,
-      breadcrumbName: APP_ROUTER_CONFIG_MAP.stylist_task.index.name,
-    },
-    {
-      path: APP_ROUTER_CONFIG_MAP.stylist_task.details.path,
-      breadcrumbName: APP_ROUTER_CONFIG_MAP.stylist_task.details.name,
-    },
-  ],
+  // [APP_ROUTER_CONFIG_MAP.stylist_sheet.index.path]: [
+  //   {
+  //     path: APP_ROUTER_CONFIG_MAP.stylist_task.index.path,
+  //     breadcrumbName: APP_ROUTER_CONFIG_MAP.stylist_task.index.name,
+  //   },
+  // ],
 };
 
 /**
@@ -77,13 +72,13 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
    * constructor
    */
 
-  useEffect(() => {
-    if (dispatch) {
-      dispatch({
-        type: 'user/fetchCurrent',
-      });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (dispatch) {
+  //     dispatch({
+  //       type: 'user/fetchCurrent',
+  //     });
+  //   }
+  // }, []);
   /**
    * init variables
    */
@@ -100,13 +95,12 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
   return (
     <ApolloProvider client={APPClient}>
       <ProLayout
-        logo={logo}
-        menuHeaderRender={(logoDom, titleDom, tprops) => {
+        menuHeaderRender={(_, __, tprops) => {
           return (
             <Link to="/">
-              {logoDom}
+              <Avatar src="http://q7345qrap.bkt.clouddn.com/avatar.jpg" shape="square" />
               {tprops && tprops.collapsed ? null : (
-                <h1 style={{ fontSize: 16 }}>Letote Stylist Admin</h1>
+                <h1 style={{ fontSize: 16 }}>Admin</h1>
               )}
             </Link>
           );
@@ -116,16 +110,15 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
           if (menuItemProps.isUrl || menuItemProps.children || !menuItemProps.path) {
             return defaultDom;
           }
-
           return <Link to={menuItemProps.path}>{defaultDom}</Link>;
         }}
         breadcrumbRender={(routers = []) => {
           // remove same key
           const firstRoute = routers[0];
-          const currentRoute = routers[routers.length - 1];
           if (firstRoute && firstRoute.breadcrumbName && firstRoute.breadcrumbName === '首页') {
             firstRoute.breadcrumbName = '工作台';
           }
+          const currentRoute = routers[routers.length - 1];
           let breadcrumbCustomRouters: any[] = [];
           if (currentRoute) {
             if (BREADCRUMB_SETTING[currentRoute.path]) {
