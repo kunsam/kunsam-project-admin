@@ -97,7 +97,7 @@ export const ProjectListItem: React.FC<{ project: Project }> = ({ project }) => 
 
       {project.tags && project.tags.length ? (
         <Row style={{ flexWrap: 'nowrap' }}>
-          <Col style={{ wordBreak: 'keep-all' }}>
+          <Col style={{ wordBreak: 'keep-all', flex: 'none' }}>
             <span>标签：</span>
           </Col>
           <Col>
